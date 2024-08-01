@@ -75,3 +75,41 @@ test("#isOk, #isNotOk", function () {
     assert.isOk(true, "true is truthy");
 });
 ```
+
+## Unit 4 - Test for Truthiness
+
+'**isTrue**', '**isNotTrue**', '**isFalse**', and '**isNotFalse**' are specific assertions used to validate the truthiness or falsiness of expressions.
+
+### isTrue
+
+- **Purpose**: Asserts that the target is strictly equal to '**true**'
+- **Usage**: If the express is strictly '**true**', the assertions passes. If it's anything else (including '**false**', '**null**', '**undefined**', '**0**', or any other falsy value), the assertion fails.
+
+### isNotTrue
+
+- **Purpose**: Asserts that the target is not strictly equal to true.
+- **Usage**: If the expression is anything other than '**true**', the assertion passes.
+
+### isFalse
+
+- **Purpose**: Asserts that the target is strictly equal to '**false**'.
+- **Usage**: If the expression is strictly '**false**', the assertion passes. If it’s anything else, the assertion fails.
+
+### isNotFalse
+
+- **Purpose**: Asserts that the target is not strictly equal to '**false**'.
+- **Usage**: If the expression is anything other than '**false**', the assertion passes.
+
+```
+test("#isTrue, #isNotTrue", function () {
+    assert.isTrue(true, "true is true");
+    assert.isTrue(
+    !!"double negation",
+    "Double negation of a truthy value is true"
+    );
+    assert.isNotTrue(
+    { value: "truthy" },
+    "Objects are truthy, but are not boolean values"
+    );
+});
+```
