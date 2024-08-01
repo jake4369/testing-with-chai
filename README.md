@@ -41,3 +41,37 @@ test("#isDefined, #isUndefined", function () {
     assert.isDefined("hello", "A string is not undefined");
 });
 ```
+
+## Unit 3 - Use Assert.isOK and Assert.isNotOK
+
+In the Chai assertions library, '**assert.isOK**' and '**assert.isNotOk**' are methods used to test the truthiness or falsiness of a value, respectively. These methods are part of Chai's '**assert**' interface and help you validate that a given expression evaluates to a truthy or falsy value in JavaScript.
+
+### assert.isOk
+
+the '**assert.isOk**' method checks whether a value is truthy. In javaScript, a truthy value is any value that is not false, 0, -0, 0n (BingInt zero), "", null, undefined, or NaN.
+
+```
+assert.isOk(value, [message]);
+```
+
+- **value**: The value to be checked for truthiness.
+- **message**: (Optional) A custom error message to display if the assertion fails.
+
+### assert.isNotOk
+
+The '**assert.isNotOk** method checks whether a value is falsy. In JavaScript, a falsy value is one of false, 0, -0, 0n, "", null, undefined, or NaN.
+
+```
+assert.isNotOk(value, [message]);
+```
+
+- **value**: The value to be checked for falsiness.
+- **message**: (Optional) A custom error message to display if the assertion fails.
+
+```
+test("#isOk, #isNotOk", function () {
+    assert.isNotOk(null, "null is falsey");
+    assert.isOk("I'm truthy", "A string is truthy");
+    assert.isOk(true, "true is truthy");
+});
+```
