@@ -34,6 +34,8 @@ Using Mocha and Chai testing we can check whether a particular variable or funct
 
 Chai provides assertions specifically designed for this purpose. The main assertions used to check if a variable or function is defined are assert.isDefined, but assert.isUndefined can also be used
 
+#### Example:
+
 ```
 test("#isDefined, #isUndefined", function () {
     assert.isDefined(null, "null is not undefined");
@@ -68,6 +70,8 @@ assert.isNotOk(value, [message]);
 - **value**: The value to be checked for falsiness.
 - **message**: (Optional) A custom error message to display if the assertion fails.
 
+#### Example:
+
 ```
 test("#isOk, #isNotOk", function () {
     assert.isNotOk(null, "null is falsey");
@@ -100,6 +104,8 @@ test("#isOk, #isNotOk", function () {
 - **Purpose**: Asserts that the target is not strictly equal to '**false**'.
 - **Usage**: If the expression is anything other than '**false**', the assertion passes.
 
+#### Example:
+
 ```
 test("#isTrue, #isNotTrue", function () {
     assert.isTrue(true, "true is true");
@@ -111,5 +117,40 @@ test("#isTrue, #isNotTrue", function () {
     { value: "truthy" },
     "Objects are truthy, but are not boolean values"
     );
+});
+```
+
+## Unit 5 - Use the Double Equals to Assert Equality
+
+In the Chai assertions library, '**assert.equal()**' and '**assert.notEqual()**' are used to check for loose equality and inequality, respectively. These assertions compare values using the loose equality operator ('**==**'), which means they allow type coercion during comparison.
+
+### assert.equal()
+
+The '**assert.equal()**' method checks if two values are equal after type coercion. This means that it will consider different data types as equal if they can be converted to the same value.
+
+```
+assert.equal(actual, expected, [message])
+```
+
+### assert.notEqual()
+
+The '**assert.notEqual()**' method checks if two values are not equal after type coercion. This means that it will consider different data types as not equal if they cannot be converted to the same value.
+
+```
+assert.notEqual(actual, expected, [message])
+```
+
+- **actual**: The value produced by the code.
+- **expected**: The value to compare against.
+- **message**: (Optional) A custom error message to display if the assertion fails.
+
+#### Example:
+
+```
+test("#equal, #notEqual", function () {
+    assert.equal(12, "12", "Numbers are coerced into strings with ==");
+    assert.notEqual({ value: 1 }, { value: 1 }, "== compares object references");
+    assert.equal(6 * "2", "12");
+    assert.notEqual(6 + "2", "12");
 });
 ```
