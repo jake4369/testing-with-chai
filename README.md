@@ -154,3 +154,38 @@ test("#equal, #notEqual", function () {
     assert.notEqual(6 + "2", "12");
 });
 ```
+
+## Unit 6 - Use the Triple Equals to Assert Strict Equality
+
+'**assert.strictEqual()**' and '**assert.notStrictEqual()**' are used to check for strict equality and inequality, respectively. These assertions compare values using the strict equality operator ('**===**'), which means they do not allow type coercion.
+
+### assert.strictEqual()
+
+The '**assert.strictEqual()**' method checks if two values are strictly equal, meaning that they must be of the same type and have the same value.
+
+```
+assert.strictEqual(actual, expected, [message]);
+```
+
+### assert.notStrictEqual()
+
+The '**assert.notStrictEqual()**' method checks if two values are not strictly equal, meaning that they must either be of different types or have different values.
+
+```
+assert.strictEqual(actual, expected, [message]);
+```
+
+- **actual**: The value produced by the code.
+- **expected**: The value to compare against.
+- **message**: (Optional) A custom error message to display if the assertion fails.
+
+#### Example:
+
+```
+test("#strictEqual, #notStrictEqual", function () {
+    assert.notStrictEqual(6, "6");
+    assert.strictEqual(6, 3 * 2);
+    assert.strictEqual(6 * "2", 12);
+    assert.notStrictEqual([1, "a", {}], [1, "a", {}]);
+});
+```
