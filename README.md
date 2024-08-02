@@ -189,3 +189,17 @@ test("#strictEqual, #notStrictEqual", function () {
     assert.notStrictEqual([1, "a", {}], [1, "a", {}]);
 });
 ```
+
+## Unit 7 - Assert Deep Equality with .deepEqual and .notDeepEqual
+
+'**assert.deepEqual()**' and '**assert.notDeepEqual()**' are used to check for deep equality and inequality, respectively. These assertions are particularly useful when comparing complex objects, arrays, or nested structures to ensure that they have identical content.
+
+### assert.deepEqual()
+
+The '**assert.deepEqual()**' method checks if two values are deeply equal, meaning that they have the same properties with the same values, including nested objects and arrays.
+
+### assert.notDeepEqual()
+
+The '**assert.notDeepEqual()**' method checks if two values are not deeply equal, meaning that there is at least one property or value that differs between them, including in nested structures.
+
+#### Example:
