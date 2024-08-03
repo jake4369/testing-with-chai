@@ -273,3 +273,55 @@ In this example:
 
 - The first test case will pass because '**5**' is less than or equal to '**10**' and '**5**' is equal to '**5**'.
 - The second test case will fail because '**10**' is greater than '**5**' and '**6**' is greater than '**5**'.
+
+## Unit 9 - Test if One Value is Below or At Least as Large as Another
+
+'**assert.isBelow()**' and '**assert.isAtLeast()**' are used to perform numerical comparisons. These methods help verify that one number is less than or greater than or equal to another number, respectively.
+
+### assert.isBelow()
+
+The '**assert.isBelow()**' method checks if the first value is strictly less than the second value. This is useful for assertions where you need to verify that a numerical value is below a certain threshold.
+
+```
+describe('assert.isBelow()', function() {
+  test('should pass when the first value is less than the second', function() {
+    assert.isBelow(5, 10, '5 is below 10');
+    assert.isBelow(3.5, 4.5, '3.5 is below 4.5');
+  });
+
+  test('should fail when the first value is not less than the second', function() {
+    assert.isBelow(10, 5, '10 is not below 5'); // This will fail
+    assert.isBelow(5, 5, '5 is not below 5'); // This will fail
+  });
+});
+```
+
+In this example:
+
+- The first test case will pass because '**5**' is less than '**10**' and '**3.5**' is less than '**4.5**'.
+- The second test case will fail because '**10**' is not less than '**5**' and '**5**' is not less than '**5**'.
+
+### assert.isAtLeast()
+
+The '**assert.isAtLeast()**' method checks if the first value is greater than or equal to the second value. This is useful for assertions where you need to verify that a numerical value meets or exceeds a certain threshold.
+
+#### Example:
+
+```
+describe('assert.isAtLeast()', function() {
+  test('should pass when the first value is greater than or equal to the second', function() {
+    assert.isAtLeast(10, 5, '10 is at least 5');
+    assert.isAtLeast(5, 5, '5 is at least 5');
+  });
+
+  test('should fail when the first value is not greater than or equal to the second', function() {
+    assert.isAtLeast(5, 10, '5 is not at least 10'); // This will fail
+    assert.isAtLeast(2.5, 3.5, '2.5 is not at least 3.5'); // This will fail
+  });
+});
+```
+
+In this example:
+
+- The first test case will pass because '**10**' is greater than '**5**' and '**5**' is equal to '**5**'.
+- The second test case will fail because '**5**' is not greater than '**10**' and '**2.5**' is not greater than '**3.5**'.
