@@ -203,3 +203,73 @@ The '**assert.deepEqual()**' method checks if two values are deeply equal, meani
 The '**assert.notDeepEqual()**' method checks if two values are not deeply equal, meaning that there is at least one property or value that differs between them, including in nested structures.
 
 #### Example:
+
+```
+test("#deepEqual, #notDeepEqual", function () {
+    assert.deepEqual(
+        { a: "1", b: 5 },
+        { b: 5, a: "1" },
+        // "The order of keys doesn't matter"
+    );
+
+    assert.notDeepEqual(
+        { a: [5, 6] },
+        { a: [6, 5] },
+        //"The order of array elements does matter"
+    );
+});
+```
+
+## Unit 8 - Compare the Properties of Two Elements
+
+'**assert.isAbove**' and '**assert.isAtMost**' are methods used for making numberical comparisons, specifically to assert whether one value is greater than or less than or equal to another value.
+
+### assert.isAbove()
+
+The '**assert.isAbove()** method is used to assert that one value is strictly greater than anpther. This is useful for scenarios where you want to ensure that a number exceeds a certain threshold.
+
+#### Example:
+
+```
+describe('assert.isAbove()', function() {
+  test('should pass when the first value is greater than the second', function() {
+    assert.isAbove(10, 5, '10 is above 5');
+    assert.isAbove(100, 50, '100 is above 50');
+  });
+
+  test('should fail when the first value is not greater than the second', function() {
+    assert.isAbove(5, 10, '5 is not above 10'); // This will fail
+    assert.isAbove(5, 5, '5 is not above 5'); // This will fail
+  });
+});
+```
+
+In this example:
+
+- The first test case will pass because '**10**' is greater than '**5**' and '**100**' is greater than '**50**'.
+- The second test case will fail because 5 is not greater than 10 and 5 is not greater than 5.
+
+### assert.isAtMost()
+
+The '**assert.isAtMost()**' method is used to assert that one value is less than or equal to another. This is useful for scenarios where you want to ensure that a number does not exceed a certain threshold.
+
+#### Example:
+
+```
+describe('assert.isAtMost()', function() {
+  test('should pass when the first value is less than or equal to the second', function() {
+    assert.isAtMost(5, 10, '5 is at most 10');
+    assert.isAtMost(5, 5, '5 is at most 5');
+  });
+
+  test('should fail when the first value is greater than the second', function() {
+    assert.isAtMost(10, 5, '10 is not at most 5'); // This will fail
+    assert.isAtMost(6, 5, '6 is not at most 5'); // This will fail
+  });
+});
+```
+
+In this example:
+
+- The first test case will pass because '**5**' is less than or equal to '**10**' and '**5**' is equal to '**5**'.
+- The second test case will fail because '**10**' is greater than '**5**' and '**6**' is greater than '**5**'.
