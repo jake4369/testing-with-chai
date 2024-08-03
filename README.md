@@ -325,3 +325,31 @@ In this example:
 
 - The first test case will pass because '**10**' is greater than '**5**' and '**5**' is equal to '**5**'.
 - The second test case will fail because '**5**' is not greater than '**10**' and '**2.5**' is not greater than '**3.5**'.
+
+## Unit 10 - Test if a Value Falls within a Specific Range
+
+The '**assert.approximately()**' method in the Chai assertion library is used to check if a number is approximately equal to another number within a certain tolerance. This is particularly useful when dealing with floating-point numbers where you want to allow for a small margin of error.
+
+In the context of the '**assert.approximately()**' method, a delta refers to the tolerance or allowable margin of error between two numerical values. It defines the range within which the actual value can differ from the expected value for the assertion to still pass.
+
+When you use '**assert.approximately()**', you are asserting that the actual value is within a certain range (defined by the delta) of the expected value. The delta represents the maximum difference allowed between the two values. If the absolute difference between the actual value and the expected value is less than or equal to the delta, the assertion passes. Otherwise, it fails.
+
+### assert.approximately()
+
+The '**assert.approximately()**' method checks if two numbers are approximately equal to each other within a specified delta (tolerance). It asserts that the absolute difference between the two numbers is less than or equal to the delta.
+
+#### Example:
+
+```
+describe('assert.approximately()', function() {
+  test('should pass when the actual value is within the tolerance of the expected value', function() {
+    assert.approximately(5.1, 5, 0.2, '5.1 is approximately equal to 5 within a delta of 0.2');
+    assert.approximately(3.14, 3.15, 0.01, '3.14 is approximately equal to 3.15 within a delta of 0.01');
+  });
+
+  test('should fail when the actual value is outside the tolerance of the expected value', function() {
+    assert.approximately(5.3, 5, 0.2, '5.3 is not approximately equal to 5 within a delta of 0.2'); // This will fail
+    assert.approximately(3.14, 3.15, 0.001, '3.14 is not approximately equal to 3.15 within a delta of 0.001'); // This will fail
+  });
+});
+```
