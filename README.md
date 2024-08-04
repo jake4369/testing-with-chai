@@ -622,3 +622,75 @@ describe('assert.notInclude() with strings', function() {
 ```
 
 For example of how to use '**assert.include()**' and '**assert.notInclude()**' with arrays, see **Unit 12 - Test if an Array Contains an Item**
+
+## Unit 15 - Use Regular Expressions to Test a String
+
+'**assert.match**' and '**assert.notMatch**' are methods used to assert whether a given string matches or does not match a regular expression pattern. These methods are particularly useful for validating that a string conforms to a certain format or contains specific patterns.
+
+### assert.match()
+
+The '**assert.match()**' method checks if a given string matches a specified regular expression pattern. If the string matches the pattern, the assertion passes; otherwise, it fails.
+
+#### Syntax:
+
+```
+assert.match(string, regexp, [message]);
+```
+
+**string**: The string to test against the regular expression.
+**regexp**: The regular expression pattern to match.
+**message**: (Optional) A custom error message to display if the assertion fails.
+
+#### Example:
+
+```
+describe('assert.match()', function() {
+  test('should pass when the string matches the regular expression', function() {
+    assert.match('hello world', /hello/, 'string contains "hello"');  // Passes
+    assert.match('abc123', /^\w+\d+$/, 'string matches alphanumeric pattern');  // Passes
+  });
+
+  test('should fail when the string does not match the regular expression', function() {
+    assert.match('goodbye world', /hello/, 'string does not contain "hello"');  // Fails
+    assert.match('123abc', /^\w+\d+$/, 'string does not match pattern');  // Fails
+  });
+});
+```
+
+In this example:
+
+The first test case passes because '**hello world**' contains '**hello**' and '**abc123**' matches the alphanumeric pattern.
+The second test case fails because '**goodbye world**' does not contain '**hello**' and '**123abc**' does not match the alphanumeric pattern at the start.
+
+### assert.notMatch()
+
+The '**assert.notMatch()**' method checks if a given string does not match a specified regular expression pattern. If the string does not match the pattern, the assertion passes; otherwise, it fails.
+
+#### Syntax:
+
+```
+assert.notMatch(string, regexp, [message]);
+```
+
+#### Example:
+
+```
+describe('assert.notMatch()', function() {
+  test('should pass when the string does not match the regular expression', function() {
+    assert.notMatch('goodbye world', /hello/, 'string does not contain "hello"');  // Passes
+    assert.notMatch('123abc', /^\w+\d+$/, 'string does not match pattern');  // Passes
+  });
+
+  test('should fail when the string matches the regular expression', function() {
+    assert.notMatch('hello world', /hello/, 'string contains "hello"');  // Fails
+    assert.notMatch('abc123', /^\w+\d+$/, 'string matches alphanumeric pattern');  // Fails
+  });
+});
+```
+
+In this example:
+
+The first test case passes because '**goodbye world**' does not contain '**hello**' and '**123abc**' does not match the alphanumeric pattern at the start.
+The second test case fails because '**hello world**' contains '**hello**' and '**abc123**' matches the alphanumeric pattern.
+
+These assertions are particularly useful for validating that strings adhere to specific formats or contain certain patterns, which is important in many scenarios such as input validation, parsing, and ensuring data integrity.
