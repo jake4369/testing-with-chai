@@ -52,6 +52,8 @@ In the Chai assertions library, '**assert.isOK**' and '**assert.isNotOk**' are m
 
 the '**assert.isOk**' method checks whether a value is truthy. In javaScript, a truthy value is any value that is not false, 0, -0, 0n (BingInt zero), "", null, undefined, or NaN.
 
+#### Syntax:
+
 ```
 assert.isOk(value, [message]);
 ```
@@ -62,6 +64,8 @@ assert.isOk(value, [message]);
 ### assert.isNotOk
 
 The '**assert.isNotOk** method checks whether a value is falsy. In JavaScript, a falsy value is one of false, 0, -0, 0n, "", null, undefined, or NaN.
+
+#### Syntax:
 
 ```
 assert.isNotOk(value, [message]);
@@ -128,6 +132,8 @@ In the Chai assertions library, '**assert.equal()**' and '**assert.notEqual()**'
 
 The '**assert.equal()**' method checks if two values are equal after type coercion. This means that it will consider different data types as equal if they can be converted to the same value.
 
+#### Syntax:
+
 ```
 assert.equal(actual, expected, [message])
 ```
@@ -135,6 +141,8 @@ assert.equal(actual, expected, [message])
 ### assert.notEqual()
 
 The '**assert.notEqual()**' method checks if two values are not equal after type coercion. This means that it will consider different data types as not equal if they cannot be converted to the same value.
+
+#### Syntax:
 
 ```
 assert.notEqual(actual, expected, [message])
@@ -163,6 +171,8 @@ test("#equal, #notEqual", function () {
 
 The '**assert.strictEqual()**' method checks if two values are strictly equal, meaning that they must be of the same type and have the same value.
 
+#### Syntax:
+
 ```
 assert.strictEqual(actual, expected, [message]);
 ```
@@ -170,6 +180,8 @@ assert.strictEqual(actual, expected, [message]);
 ### assert.notStrictEqual()
 
 The '**assert.notStrictEqual()**' method checks if two values are not strictly equal, meaning that they must either be of different types or have different values.
+
+#### Syntax:
 
 ```
 assert.strictEqual(actual, expected, [message]);
@@ -362,6 +374,8 @@ The Chai assertion library includes methods for asserting whether a value is an 
 
 The '**assert.isArray()**' method checks if a given value is an array. This is useful when you want to validate that a certain variable or expression results in an array.
 
+#### Syntax:
+
 ```
 assert.isArray(value, [message]);
 ```
@@ -395,6 +409,8 @@ In this example:
 
 The '**assert.isNotArray()**' method checks if a given value is not an array. This is useful when you want to ensure that a certain variable or expression does not result in an array.
 
+#### Syntax:
+
 ```
 assert.isNotArray(value, [message]);
 ```
@@ -422,3 +438,62 @@ In this example:
 - The second test case fails because '**[1, 2, 3]**' and '**[]**' are arrays.
 
 These assertions are useful for type-checking in your tests, ensuring that values meet the expected type requirements, which is particularly important when dealing with functions and methods that return or operate on arrays.
+
+## Unit 12 - Test if an Array Contains an Item
+
+'**assert.include**' and '**assert.notInclude**' are methods used to assert the presence or absence of a value within a collection. This includes arrays, strings, and objects. They are particularly useful for checking if a specific element element exists within a container or if a substring exists within a string.
+
+### assert.include()
+
+The '**asert.include**' method checks if a value is present within a collection (an array, string, or object). If the value is found, the assertion passes; otherwise, it fails.
+
+#### Syntax:
+
+```
+assert.include(haystack, needle, [message]);
+```
+
+- **haystack**: The collection to search within. This can be an array, string, or object.
+- **needle**: The value to search for within the haystack.
+- **message**: (Optional) A custom error message to display if the assertion fails.
+
+#### Example with Arrays:
+
+```
+describe('assert.include() with arrays', function() {
+  test('should pass when the array includes the value', function() {
+    assert.include([1, 2, 3], 2, 'array includes 2');  // Passes
+    assert.include(['a', 'b', 'c'], 'b', 'array includes b');  // Passes
+  });
+
+  test('should fail when the array does not include the value', function() {
+    assert.include([1, 2, 3], 4, 'array does not include 4');  // Fails
+  });
+});
+```
+
+### assert.notInclude()
+
+The '**assert.notInclude()**' method checks if a value is not present within a collection (an array, string, or object). If the value is not found, the assertion passes; otherwise, it fails.
+
+#### Syntax:
+
+```
+assert.notInclude(haystack, needle, [message]);
+```
+
+#### Example with Arrays:
+
+```
+describe('assert.notInclude() with arrays', function() {
+  test('should pass when the array does not include the value', function() {
+    assert.notInclude([1, 2, 3], 4, 'array does not include 4');  // Passes
+  });
+
+  test('should fail when the array includes the value', function() {
+    assert.notInclude([1, 2, 3], 2, 'array includes 2');  // Fails
+  });
+});
+```
+
+These assertions are particularly useful for verifying the presence or absence of elements or substrings within collections, ensuring that your data contains or excludes specific values as expected.
