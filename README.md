@@ -353,3 +353,72 @@ describe('assert.approximately()', function() {
   });
 });
 ```
+
+## Unit 11 - Test if a Value is an Array
+
+The Chai assertion library includes methods for asserting whether a value is an array or not an array. These methods are '**assert.isArray**' and '**assert.isNotArray**'.
+
+### assert.isArray()
+
+The '**assert.isArray()**' method checks if a given value is an array. This is useful when you want to validate that a certain variable or expression results in an array.
+
+```
+assert.isArray(value, [message]);
+```
+
+- **value**: The value that you want to check.
+- **message**: (Optional) A custom error message to display if the assertion fails.
+
+#### Example:
+
+```
+describe('assert.isArray()', function() {
+  test('should pass when the value is an array', function() {
+    assert.isArray([1, 2, 3], 'value is an array');  // Passes
+    assert.isArray([], 'value is an array');        // Passes
+  });
+
+  test('should fail when the value is not an array', function() {
+    assert.isArray('not an array', 'value is not an array');  // Fails
+    assert.isArray({ a: 1 }, 'value is not an array');       // Fails
+    assert.isArray(null, 'value is not an array');           // Fails
+  });
+});
+```
+
+In this example:
+
+- The first test case passes because '**[1, 2, 3]**' and '**[]**' are arrays.
+- The second test case fails because '**not an array**', '**{ a: 1 }**', and '**null**' are not arrays.
+
+### assert.isNotArray()
+
+The '**assert.isNotArray()**' method checks if a given value is not an array. This is useful when you want to ensure that a certain variable or expression does not result in an array.
+
+```
+assert.isNotArray(value, [message]);
+```
+
+#### Example:
+
+```
+describe('assert.isNotArray()', function() {
+    test('should pass when the value is not an array', function() {
+        assert.isNotArray('not an array', 'value is not an array');
+        assert.isNotArray({ a: 1 }, 'value is not an array');       // Passes
+        assert.isNotArray(null, 'value is not an array');           // Passes
+    });
+
+    test('should fail when the value is an array', function() {
+        assert.isNotArray([1, 2, 3], 'value is an array');  // Fails
+        assert.isNotArray([], 'value is an array');        // Fails
+    });
+});
+```
+
+In this example:
+
+- The first test case passes because '**not an array**', '**{ a: 1 }**', and '**null**' are not arrays.
+- The second test case fails because '**[1, 2, 3]**' and '**[]**' are arrays.
+
+These assertions are useful for type-checking in your tests, ensuring that values meet the expected type requirements, which is particularly important when dealing with functions and methods that return or operate on arrays.
