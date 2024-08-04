@@ -497,3 +497,128 @@ describe('assert.notInclude() with arrays', function() {
 ```
 
 These assertions are particularly useful for verifying the presence or absence of elements or substrings within collections, ensuring that your data contains or excludes specific values as expected.
+
+## Unit 13 - Test if a Value is a String
+
+'**assert.isString**' and '**assert.isNotString**' are methods used to assert whether a given value is a string or not a string, respectively. These methods are useful for type-checking in your tests to ensure that values are of the expected type.
+
+### assert.isString()
+
+The '**assert.isString()**' method checks if a given value is a string. If the value is a string, the assertion passes; otherwise, it fails.
+
+#### Syntax:
+
+```
+assert.isString(value, [message]);
+```
+
+- **value**: The value to check.
+- **message**: (Optional) A custom error message to display if the assertion fails.
+
+#### Example:
+
+```
+describe('assert.isString()', function() {
+  test('should pass when the value is a string', function() {
+    assert.isString('hello world', 'value is a string');  // Passes
+    assert.isString('', 'empty string is still a string');  // Passes
+  });
+
+  test('should fail when the value is not a string', function() {
+    assert.isString(123, 'value is not a string');  // Fails
+    assert.isString({ key: 'value' }, 'object is not a string');  // Fails
+    assert.isString(['a', 'b', 'c'], 'array is not a string');  // Fails
+  });
+});
+```
+
+In this example:
+
+- The first test case passes because '**hello world**' and **''** are strings.
+- The second test case fails because '**123**', '**{ key: 'value' }**', and '**['a', 'b', 'c']**' are not strings.
+
+### assert.isNotString()
+
+The '**assert.isNotString()**' method checks if a given value is not a string. If the value is not a string, the assertion passes; otherwise, it fails.
+
+#### Syntax:
+
+```
+assert.isNotString(value, [message]);
+```
+
+#### Example:
+
+```
+describe('assert.isNotString()', function() {
+  test('should pass when the value is not a string', function() {
+    assert.isNotString(123, 'value is not a string');  // Passes
+    assert.isNotString({ key: 'value' }, 'object is not a string');  // Passes
+    assert.isNotString(['a', 'b', 'c'], 'array is not a string');  // Passes
+  });
+
+  test('should fail when the value is a string', function() {
+    assert.isNotString('hello world', 'value is a string');  // Fails
+    assert.isNotString('', 'empty string is still a string');  // Fails
+  });
+});
+```
+
+## Unit 14 - Test if a String Contains a Substring
+
+'**assert.include**' and '**assert.notInclude**' are methods used to assert the presence or absence of a value within a collection. This includes arrays, strings, and objects. They are particularly useful for checking if a specific element element exists within a container or if a substring exists within a string.
+
+### assert.include()
+
+The '**assert.include()**' method checks if a value is present within a collection (an array, string, or object). If the value is found, the assertion passes; otherwise, it fails.
+
+#### Syntax:
+
+```
+assert.include(haystack, needle, [message]);
+```
+
+- **haystack**: The collection to search within. This can be an array, string, or object.
+- **needle**: The value to search for within the haystack.
+- **message**: (Optional) A custom error message to display if the assertion fails.
+
+#### Example:
+
+```
+describe('assert.include() with strings', function() {
+  test('should pass when the string includes the substring', function() {
+    assert.include('hello world', 'world', 'string includes world');  // Passes
+    assert.include('chai assertion library', 'assertion', 'string includes assertion');  // Passes
+  });
+
+  test('should fail when the string does not include the substring', function() {
+    assert.include('hello world', 'foo', 'string does not include foo');  // Fails
+  });
+});
+```
+
+### assert.notInclude()
+
+The '**assert.notInclude()**' method checks if a value is not present within a collection (an array, string, or object). If the value is not found, the assertion passes; otherwise, it fails.
+
+#### Syntax:
+
+```
+assert.notInclude(haystack, needle, [message]);
+```
+
+#### Example:
+
+```
+describe('assert.notInclude() with strings', function() {
+  test('should pass when the string does not include the substring', function() {
+    assert.notInclude('hello world', 'foo', 'string does not include foo');  // Passes
+  });
+
+  test('should fail when the string includes the substring', function() {
+    assert.notInclude('hello world', 'world', 'string includes world');  // Fails
+  });
+});
+```
+
+For example of how to use '**assert.include()**' and '**assert.notInclude()**' with arrays, see **Unit 12 - Test if an Array Contains an Item**
