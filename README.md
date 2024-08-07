@@ -766,3 +766,76 @@ In this example:
 
 - The first test case passes because the object '**obj**' does not have properties '**d**' and '**e**'.
 - The second test case fails because the object '**obj**' has '**a**' property '**a**'.
+
+## Unit 17 - Test if a Value is of a Specific Data Structure Type
+
+The '**assert.typeOf**' and '**assert.notTypeOf**' are methods used to assert the type of a given value. These methods are useful for type-checking to ensure that values in your code are the expected type.
+
+### assert.typeOf()
+
+The '**assert.typeOf()**' method checks if a given value is of a specified type. If the value is of the specified type, the assertion passes; otherwise, it fails.
+
+#### Syntax:
+
+```
+assert.typeOf(value, type, [message]);
+```
+
+- **value**: The value to check.
+- **type**: The type to check for, specified as a string (e.g., 'string', 'number', 'object', etc.).
+- **message**: (Optional) A custom error message to display if the assertion fails.
+
+#### Example:
+
+```
+describe('assert.typeOf()', function() {
+  test('should pass when the value is of the specified type', function() {
+    assert.typeOf('hello', 'string', 'value is a string');  // Passes
+    assert.typeOf(42, 'number', 'value is a number');  // Passes
+    assert.typeOf([], 'array', 'value is an array');  // Passes (Chai recognizes arrays as type 'array')
+    assert.typeOf({}, 'object', 'value is an object');  // Passes
+  });
+
+  test('should fail when the value is not of the specified type', function() {
+    assert.typeOf('hello', 'number', 'value is not a number');  // Fails
+    assert.typeOf(42, 'string', 'value is not a string');  // Fails
+  });
+});
+```
+
+In this example:
+
+The first test case passes because '**hello**' is a string, '**42**' is a number, '**[]**' is an array, and '**{}**' is an object.
+The second test case fails because '_hello_' is not a number and '**42**' is not a string.
+
+### assert.notTypeOf()
+
+The '**assert.notTypeOf()**' method checks if a given value is not of a specified type. If the value is not of the specified type, the assertion passes; otherwise, it fails.
+
+#### Syntax:
+
+```
+assert.notTypeOf(value, type, [message]);
+```
+
+#### Example:
+
+```
+describe('assert.notTypeOf()', function() {
+  test('should pass when the value is not of the specified type', function() {
+    assert.notTypeOf('hello', 'number', 'value is not a number');  // Passes
+    assert.notTypeOf(42, 'string', 'value is not a string');  // Passes
+    assert.notTypeOf([], 'object', 'value is not an object');  // Passes (Chai recognizes arrays as type 'array')
+  });
+
+  test('should fail when the value is of the specified type', function() {
+    assert.notTypeOf('hello', 'string', 'value is a string');  // Fails
+    assert.notTypeOf(42, 'number', 'value is a number');  // Fails
+  });
+});
+```
+
+In this example:
+
+The first test case passes because '**hello**' is not a number, '**42**' is not a string, and '**[]**' is not an object (arrays are specifically recognized as type 'array').
+The second test case fails because '**hello**' is a string and '**42**' is a number.
