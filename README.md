@@ -694,3 +694,75 @@ The first test case passes because '**goodbye world**' does not contain '**hello
 The second test case fails because '**hello world**' contains '**hello**' and '**abc123**' matches the alphanumeric pattern.
 
 These assertions are particularly useful for validating that strings adhere to specific formats or contain certain patterns, which is important in many scenarios such as input validation, parsing, and ensuring data integrity.
+
+## Unit 16 - Test if an Object has a Property
+
+'**assert.property**' and '**assert.notProperty**' are methods used to assert the presence or absence of a specific property in an object. These methods are particularly useful for verifying that an object has (or does not have) a certain property, which is important when dealing with objects that must conform to specific schemas or structures.
+
+### assert.property()
+
+The '**assert.property()**' method checks if a given object has a specified property. If the object has the property, the assertion passes; otherwise, it fails.
+
+#### Syntax:
+
+```
+assert.property(object, property, [message]);
+```
+
+- **object**: The object to check.
+- **property**: The name of the property to check for.
+- **message**: (Optional) A custom error message to display if the assertion fails.
+
+#### Example:
+
+```
+describe('assert.property()', function() {
+  test('should pass when the object has the specified property', function() {
+    const obj = { a: 1, b: 2, c: 3 };
+    assert.property(obj, 'a', 'object has property a');  // Passes
+    assert.property(obj, 'b', 'object has property b');  // Passes
+  });
+
+  test('should fail when the object does not have the specified property', function() {
+    const obj = { a: 1, b: 2, c: 3 };
+    assert.property(obj, 'd', 'object does not have property d');  // Fails
+  });
+});
+```
+
+In this example:
+
+- The first test case passes because the object '**obj**' has properties '**a**' and '**b**'.
+- The second test case fails because the object '**obj**' does not have '**a**' property '**d**'.
+
+### assert.notProperty()
+
+The '**assert.notProperty()**' method checks if a given object **does not** have a specified property. If the object does not have the property, the assertion passes; otherwise, it fails.
+
+#### Syntax:
+
+```
+assert.notProperty(object, property, [message]);
+```
+
+#### Example:
+
+```
+describe('assert.notProperty()', function() {
+  test('should pass when the object does not have the specified property', function() {
+    const obj = { a: 1, b: 2, c: 3 };
+    assert.notProperty(obj, 'd', 'object does not have property d');  // Passes
+    assert.notProperty(obj, 'e', 'object does not have property e');  // Passes
+  });
+
+  test('should fail when the object has the specified property', function() {
+    const obj = { a: 1, b: 2, c: 3 };
+    assert.notProperty(obj, 'a', 'object has property a');  // Fails
+  });
+});
+```
+
+In this example:
+
+- The first test case passes because the object '**obj**' does not have properties '**d**' and '**e**'.
+- The second test case fails because the object '**obj**' has '**a**' property '**a**'.
