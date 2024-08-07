@@ -839,3 +839,81 @@ In this example:
 
 The first test case passes because '**hello**' is not a number, '**42**' is not a string, and '**[]**' is not an object (arrays are specifically recognized as type 'array').
 The second test case fails because '**hello**' is a string and '**42**' is a number.
+
+## Unit 18 - Test if an Object is an Instance of a Constructor
+
+'**assert.instanceOf**' and '**assert.notInstanceOf**' are methods used to assert whether a given object is an instance of a specified constructor or not. These methods are useful for checking that objects are created from specific classes or constructor functions.
+
+### assert.instanceOf()
+
+The '**assert.instanceOf()**' method checks if a given object is an instance of a specified constructor. If the object is an instance of the constructor, the assertion passes; otherwise, it fails.
+
+#### Syntax:
+
+```
+assert.instanceOf(object, constructor, [message]);
+```
+
+- **object**: The object to check.
+- **constructor**: The constructor to check against.
+- **message**: (Optional) A custom error message to display if the assertion fails.
+
+#### Example:
+
+```
+class MyClass {}
+
+describe('assert.instanceOf()', function() {
+  test('should pass when the object is an instance of the specified constructor', function() {
+    const obj = new MyClass();
+    assert.instanceOf(obj, MyClass, 'obj is an instance of MyClass');  // Passes
+    assert.instanceOf([], Array, 'array is an instance of Array');  // Passes
+  });
+
+  test('should fail when the object is not an instance of the specified constructor', function() {
+    const obj = {};
+    assert.instanceOf(obj, MyClass, 'obj is not an instance of MyClass');  // Fails
+    assert.instanceOf({}, Array, 'object is not an instance of Array');  // Fails
+  });
+});
+```
+
+In this example:
+
+The first test case passes because '**obj**' is an instance of '**MyClass**' and '**[]**' is an instance of '**Array**'.
+The second test case fails because '**{}**' is not an instance of '**MyClass**' and '**{}**' is not an instance of '**Array**'.
+
+### assert.notInstanceOf()
+
+The '**assert.notInstanceOf()**' method checks if a given object is not an instance of a specified constructor. If the object is not an instance of the constructor, the assertion passes; otherwise, it fails.
+
+#### Syntax:
+
+```
+assert.notInstanceOf(object, constructor, [message]);
+```
+
+#### Example:
+
+```
+class MyClass {}
+
+describe('assert.notInstanceOf()', function() {
+  test('should pass when the object is not an instance of the specified constructor', function() {
+    const obj = {};
+    assert.notInstanceOf(obj, MyClass, 'obj is not an instance of MyClass');  // Passes
+    assert.notInstanceOf({}, Array, 'object is not an instance of Array');  // Passes
+  });
+
+  test('should fail when the object is an instance of the specified constructor', function() {
+    const obj = new MyClass();
+    assert.notInstanceOf(obj, MyClass, 'obj is an instance of MyClass');  // Fails
+    assert.notInstanceOf([], Array, 'array is an instance of Array');  // Fails
+  });
+});
+```
+
+In this example:
+
+The first test case passes because '**{}**' is not an instance of '**MyClass**' and '**{}**' is not an instance of '**Array**'.
+The second test case fails because '**obj**' is an instance of '**MyClass**' and '**[]**' is an instance of '**Array**'.
